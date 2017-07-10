@@ -1,14 +1,22 @@
 const express = require('express');
 const app = express();
-
-app.set('view engine', 'ejs');
+const bodyParser = require('body-parser');
 
 app.use(express.static('public'));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs');
+
 app.get('/', function(req, res) {
-	res.render('index')
+	res.render('index');
+});
+
+app.post('/', function(req, res) {
+	res.render('index');
+	console.log(req.body.city);
 });
 
 app.listen(3000, function() {
-	console.log('Server listening on port 3000.')
+	console.log('Server listening on port 3000.');
 });
